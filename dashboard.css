@@ -1,0 +1,103 @@
+*{
+    border: 1px black solid;    
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+header .logo{
+    display: flex; 
+    background-color: black;
+    color: white;
+}
+
+.logo h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-kiri{
+    width: 150px;
+    height: 150px;
+}
+
+.logo-kanan{
+    width: 60%;
+    display: flex;
+    margin-left: auto;
+}
+
+nav{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+nav a{
+    color: white;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+ul {
+    display: flex;
+    margin-left: -20px;
+    justify-content: space-between;
+}
+
+li {
+    display: flex;
+    list-style-type: none;
+    padding: 10px;
+
+}
+
+main {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.video {
+    display: grid;
+    padding: 10px;
+    background-color: black;
+}
+
+iframe {
+    margin: 10px 0;
+}
+
+h2 {
+    text-align: center;
+}
+
+.foto {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   padding-top: 10px;
+}
+
+img {
+    width: 300px;
+    height: 200px;
+    margin: 5px;
+}
+
+footer{
+  text-align: center;
+  color: white;
+  background-color: black;
+}
+
+.konten-foto {
+    display: none;
+}

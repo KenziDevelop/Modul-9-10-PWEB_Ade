@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Hotel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function toggleForm(role) {
+            if (role === 'admin') {
+                document.getElementById('login_admin').classList.remove('hidden');
+                document.getElementById('user_login').classList.add('hidden');
+            } else {
+                document.getElementById('login_admin').classList.add('hidden');
+                document.getElementById('user_login').classList.remove('hidden');
+            }
+        }
+
+        function handleLogin(role) {
+            if (role === 'admin') {
+                alert('Login berhasil sebagai Admin!');
+                window.location.href = 'admin.html';
+            } else {
+                alert('Login berhasil sebagai User!');
+                window.location.href = 'dashboard.html';
+            }
+        }
+    </script>
+</head>
+<body class="relative h-screen w-screen overflow-hidden">
+
+    <!-- Video Background -->
+    <video autoplay loop muted class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
+        <source src="img/hotel.mp4" type="video/mp4">
+    </video>
+
+    <!-- Navbar -->
+    <nav class="absolute top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-md z-10">
+        <div class="max-w-7xl mx-auto flex justify-center py-3 space-x-8">
+            <button onclick="toggleForm('admin')" class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition">Admin</button>
+            <button onclick="toggleForm('user')" class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition">User</button>
+        </div>
+    </nav>
+
+    <!-- Login Content -->
+    <div class="flex items-center justify-center h-full">
+        <div class="bg-white/90 backdrop-blur-md p-8 rounded-lg shadow-lg max-w-md w-full">
+
+            <!-- Admin Login Form -->
+            <div id="login_admin" class="hidden">
+                <h3 class="text-center text-xl font-semibold text-gray-700 mb-6">Login Sebagai Admin</h3>
+                <form onsubmit="event.preventDefault(); handleLogin('admin');">
+                    <div class="mb-4">
+                        <label for="username_admin" class="block text-sm font-medium text-gray-600">Username</label>
+                        <input type="text" id="username_admin" name="username" placeholder="Enter your admin username" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password_admin class="block text-sm font-medium text-gray-600">Password</label>
+                        <input type="password" id="password_admin name="password" placeholder="Enter your password" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input type="checkbox" id="admin_ingat" name="remember-me" class="mr-2">
+                        <label for="admin_ingat" class="text-sm text-gray-600">Remember Me</label>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">Login Sebagai Admin</button>
+
+                    <div class="mt-4 text-center">
+                        <a href="#" class="text-sm text-blue-600 hover:underline">Lupa Kata Sandi?</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- User Login Form -->
+            <div id="user_login">
+                <h3 class="text-center text-xl font-semibold text-gray-700 mb-6">Login Sebagai User</h3>
+                <form onsubmit="event.preventDefault(); handleLogin('user');">
+                    <div class="mb-4">
+                        <label for="username_user" class="block text-sm font-medium text-gray-600">Username</label>
+                        <input type="text" id="username_user" name="username" placeholder="Enter your username" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password_user]" class="block text-sm font-medium text-gray-600">Password</label>
+                        <input type="password" id="password_user]" name="password" placeholder="Enter your password" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input type="checkbox" id="ingat_user" name="remember-me" class="mr-2">
+                        <label for="ingat_user" class="text-sm text-gray-600">Remember Me</label>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">Login Sebagai User</button>
+
+                    <div class="mt-4 text-center">
+                        <a href="#" class="text-sm text-blue-600 hover:underline">Lupa Kata Sandi?</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

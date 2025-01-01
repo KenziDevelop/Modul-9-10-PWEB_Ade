@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 1</title>
+    <link rel="stylesheet" href="pesan.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function validateForm(event) {
+                event.preventDefault();
+
+                const namaPesan = $("#namaPesan").val();
+                const noIdentitas = $("#noIdentitas").val();
+                const jenisKelamin = $('input[name="jenisKelamin"]:checked').val();
+                const tipeKamar = $("#tipeKamar").val();
+                const harga = parseInt($("#harga").val());
+                const tanggalPesan = $("#tanggalPesan").val();
+                const durasi = parseInt($("#durasi").val());
+                const breakfast = $("#breakfast").is(":checked");
+
+                if (noIdentitas.length !== 16 || isNaN(noIdentitas)) {
+                    alert("Nomor Identitas harus 16 digit angka.");
+                    return;
+                }
+
+                if (isNaN(durasi) || durasi <= 0) {
+                    alert("Durasi Menginap harus angka positif.");
+                    return;
+                }
+
+                let totalBayar = harga * durasi;
+                let diskon = 0;
+
+                if (durasi > 3) {
+                    diskon = 0.1 * totalBayar;
+                    totalBayar -= diskon;
+                }
+                if (breakfast) {
+                    totalBayar += 80000;
+                }
+
+                // Menampilkan resume pemesanan
+                $("#resume").html(`
+                    <h2>Resume Pemesanan</h2>
+                    <p>Nama Pemesan: ${namaPesan}</p>
+                    <p>Nomor Identitas: ${noIdentitas}</p>
+                    <p>Jenis Kelamin: ${jenisKelamin || ""}</p>
+                    <p>Tipe Kamar: ${tipeKamar}</p>
+                    <p>Durasi Menginap: ${durasi} hari</p>
+                    <p>Diskon: Rp ${diskon.toLocaleString()}</p>
+                    <p>Total Bayar: Rp ${totalBayar.toLocaleString()}</p>
+                `);
+
+                // Menampilkan alert pesanan telah disimpan
+                alert("Pesanan telah disimpan.");
+            }
+
+            function setHarga() {
+                const tipeKamar = $("#tipeKamar").val();
+                let harga = 0;
+
+                if (tipeKamar === "standard") harga = 300000;
+                else if (tipeKamar === "deluxe") harga = 500000;
+                else if (tipeKamar === "family") harga = 700000;
+
+                $("#harga").val(harga);
+            }
+
+            // Event listener untuk submit form
+            $("form").on("submit", validateForm);
+
+            // Event listener untuk tipe kamar
+            $("#tipeKamar").on("change", setHarga);
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <h1>Form Pemesanan</h1>
+
+        <div class="form-group">
+            <label for="namaPesan">Nama Pemesan:</label>
+            <input type="text" name="namaPesan" id="namaPesan" placeholder="Masukkan Nama Pemesan" required>
+        </div>
+
+        <div class="form-group">
+            <label>Jenis Kelamin:</label>
+            <input type="radio" name="jenisKelamin" value="Laki-Laki" required> Laki-Laki
+            <input type="radio" name="jenisKelamin" value="Perempuan" required> Perempuan
+        </div>
+
+        <div class="form-group">
+            <label for="noIdentitas">Nomor Identitas:</label>
+            <input type="text" name="noIdentitas" id="noIdentitas" placeholder="Masukkan Nomor Identitas" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tipeKamar">Tipe Kamar:</label>
+            <select name="tipeKamar" id="tipeKamar" required>
+                <option value="">---Pilih---</option>
+                <option value="standard">STANDARD</option>
+                <option value="deluxe">DELUXE</option>
+                <option value="family">FAMILY</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="harga">Harga (Per Malam):</label>
+            <input type="number" name="harga" id="harga" placeholder="Harga" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="tanggalPesan">Tanggal Pesan:</label>
+            <input type="date" name="tanggalPesan" id="tanggalPesan" required>
+        </div>
+
+        <div class="form-group">
+            <label for="durasi">Durasi Menginap:</label>
+            <input type="number" name="durasi" id="durasi" placeholder="Lama Menginap (Hari)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="breakfast">Termasuk Breakfast:</label>
+            <input type="checkbox" name="breakfast" id="breakfast"> Ya
+        </div>
+
+        <div class="form-button">
+            <button type="submit" class="bsimpan">Simpan</button>
+            <!-- Tombol Batal mengarah ke dashboard.html -->
+            <button class="bbatal"><a href="dashboard.html">Batal</a></button>
+        </div>
+    </form>
+
+    <div id="resume"></div>
+</body>
+</html>

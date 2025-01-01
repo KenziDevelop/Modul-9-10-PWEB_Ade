@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Hotel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100 flex">
+
+    <!-- Sidebar -->
+    <div class="sidebar w-64 bg-blue-800 text-white p-6 h-screen flex flex-col">
+        <h2 class="text-center text-2xl font-bold mb-8">Kelola Data Hotel</h2>
+        <ul class="space-y-4">
+            <li><a href="#" onclick="showSection('jenis_kamar')" class="block text-lg hover:bg-blue-700 px-4 py-2 rounded transition">Jenis Kamar</a></li>
+            <li><a href="#" onclick="showSection('fasilitas')" class="block text-lg hover:bg-blue-700 px-4 py-2 rounded transition">Fasilitas Hotel</a></li>
+            <li><a href="#" onclick="showSection('data_pesanan')" class="block text-lg hover:bg-blue-700 px-4 py-2 rounded transition">Data Pemesanan</a></li>
+            <li><a href="index.html" class="block text-lg hover:bg-blue-700 px-4 py-2 rounded transition">Log Out</a></li>
+        </ul>
+    </div>
+
+    <!-- Konten Utama -->
+    <div class="main-content flex-grow p-8 overflow-y-auto bg-gray-50">
+
+        <!-- Section: Mengelola Jenis Kamar -->
+        <section id="jenis_kamar" class="mb-12 bg-white p-6 rounded-lg shadow-md hidden">
+            <h2 class="text-2xl font-bold mb-6 text-blue-900">Jenis Kamar</h2>
+            <form id="form_kamar" action="#" method="POST" onsubmit="handleFormSubmit(event, 'room')">
+                <div class="mb-6">
+                    <label for="tipe_kamar" class="block text-sm font-semibold mb-2 text-gray-700">Jenis Kamar</label>
+                    <input type="text" id="tipe_kamar" name="tipe_kamar" class="w-full p-3 border border-gray-300 rounded-md" placeholder="Masukkan jenis kamar" required>
+                </div>
+                <div class="mb-6">
+                    <label for="harga_kamar" class="block text-sm font-semibold mb-2 text-gray-700">Harga Kamar</label>
+                    <input type="number" id="harga_kamar" name="harga_kamar" class="w-full p-3 border border-gray-300 rounded-md" placeholder="Masukkan harga kamar" required>
+                </div>
+                <div>
+                    <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition">Tambah Kamar</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Section: Mengelola Fasilitas Hotel -->
+        <section id="fasilitas" class="mb-12 bg-white p-6 rounded-lg shadow-md hidden">
+            <h2 class="text-2xl font-bold mb-6 text-blue-900">Fasilitas Hotel</h2>
+            <form id="form_fasilitas" action="#" method="POST" onsubmit="handleFormSubmit(event, 'facility')">
+                <div class="mb-6">
+                    <label for="nama_fasilitas" class="block text-sm font-semibold mb-2 text-gray-700">Nama Fasilitas</label>
+                    <input type="text" id="nama_fasilitas" name="nama_fasilitas" class="w-full p-3 border border-gray-300 rounded-md" placeholder="Masukkan nama fasilitas" required>
+                </div>
+                <div class="mb-6">
+                    <label for="penjelasan_fasilitas" class="block text-sm font-semibold mb-2 text-gray-700">Deskripsi Fasilitas</label>
+                    <textarea id="penjelasan_fasilitas" name="penjelasan_fasilitas" class="w-full p-3 border border-gray-300 rounded-md" placeholder="Deskripsi fasilitas" required></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 transition">Tambah Fasilitas</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Data Pemesanan -->
+        <section id="data_pesanan" class="mb-12 bg-white p-6 rounded-lg shadow-md hidden">
+            <h2 class="text-2xl font-bold mb-6 text-blue-900">Data Pemesanan</h2>
+            <table class="w-full table-auto border-collapse">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 text-sm font-semibold text-left bg-gray-100 border-b">ID Pemesanan</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left bg-gray-100 border-b">Nama Pemesan</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left bg-gray-100 border-b">Tanggal Check-In</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left bg-gray-100 border-b">Tanggal Check-Out</th>
+                        <th class="px-6 py-3 text-sm font-semibold text-left bg-gray-100 border-b">Status Pemesanan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-3 border-b">001</td>
+                        <td class="px-6 py-3 border-b">Ade Lion</td>
+                        <td class="px-6 py-3 border-b">2025-01-01</td>
+                        <td class="px-6 py-3 border-b">2025-01-05</td>
+                        <td class="px-6 py-3 border-b">Konfirmasi</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-3 border-b">002</td>
+                        <td class="px-6 py-3 border-b">Mita</td>
+                        <td class="px-6 py-3 border-b">2024-12-31</td>
+                        <td class="px-6 py-3 border-b">2025-01-02</td>
+                        <td class="px-6 py-3 border-b">Pesan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Sembunyikan section
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Tampilkan section yang dipilih
+            const activeSection = document.getElementById(sectionId);
+            activeSection.classList.remove('hidden');
+        }
+
+        function handleFormSubmit(event, type) {
+            event.preventDefault(); // Mencegah form submit secara default
+
+            // data berhasil ditambahkan
+            if (type === 'room') {
+                alert("Berhasil Menambah Data Kamar");
+            } else if (type === 'facility') {
+                alert("Berhasil Menambah Pengelolaan Fasilitas");
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fasilitas Hotel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-gray-100 py-8">
+
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Pilih Fasilitas Hotel</h2>
+    <form>
+      <div class="mb-6">
+        <label for="tipeKamar" class="block text-gray-700 font-medium mb-2">Tipe Kamar:</label>
+        <select name="tipeKamar" id="tipeKamar" class="block w-full px-4 py-2 border rounded-lg" required onchange="updateImage()">
+          <option value="">---Pilih---</option>
+          <option value="standard">STANDARD</option>
+          <option value="deluxe">DELUXE</option>
+          <option value="family">FAMILY</option>
+        </select>
+      </div>
+
+      <!-- Pilihan fasilitas dengan layout horizontal -->
+      <div class="mb-6 grid grid-cols-2 gap-4">
+        <div>
+          <label for="wifi" class="block text-gray-700 font-medium">Wi-Fi</label>
+          <input type="checkbox" id="wifi" class="form-checkbox h-5 w-5 text-blue-600" onchange="updateImage()">
+        </div>
+        <div>
+          <label for="kolam" class="block text-gray-700 font-medium">Kolam Renang</label>
+          <input type="checkbox" id="kolam" class="form-checkbox h-5 w-5 text-blue-600" onchange="updateImage()">
+        </div>
+        <div>
+          <label for="gym" class="block text-gray-700 font-medium">Gym</label>
+          <input type="checkbox" id="gym" class="form-checkbox h-5 w-5 text-blue-600" onchange="updateImage()">
+        </div>
+        <div>
+          <label for="restoran" class="block text-gray-700 font-medium">Restoran</label>
+          <input type="checkbox" id="restoran" class="form-checkbox h-5 w-5 text-blue-600" onchange="updateImage()">
+        </div>
+      </div>
+
+      <div class="mt-6 mb-6">
+        <label for="gambar_kamar" class="block text-gray-700 font-medium">Gambar Tipe Kamar:</label>
+        <img id="gambar_kamar" class="w-full rounded-lg" src="" alt="">
+      </div>
+
+      <!-- Gambar fasilitas -->
+      <div class="mt-6 mb-6" id="gambar_fasilitas">
+        <!-- Gambar fasilitas -->
+      </div>
+
+      <!-- Tombol Kembali -->
+      <div class="mt-6 flex justify-center">
+        <a href="dashboard.html" class="bg-gray-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-gray-600 focus:outline-none">Kembali</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function updateImage() {
+      var tipeKamar = document.getElementById("tipeKamar").value;
+      var gambar_kamar = document.getElementById("gambar_kamar");
+      var gambar_fasilitas = document.getElementById("gambar_fasilitas");
+
+      // Update gambar tipe kamar
+      if (tipeKamar === "standard") {
+        gambar_kamar.src = "img/standart.jpg";
+      } else if (tipeKamar === "deluxe") {
+        gambar_kamar.src = "img/delux.jpg";
+      } else if (tipeKamar === "family") {
+        gambar_kamar.src = "img/family.jpg";
+      } else {
+        gambar_kamar.src = "";
+      }
+
+      // Update gambar fasilitas yang dipilih
+      let fasilitasHTML = '';
+      if (document.getElementById("wifi").checked) {
+        fasilitasHTML += `<div class="mt-2 flex items-center mr-4"><img src="img/wifi.jpeg" alt="Wi-Fi" class="rounded-lg w-16 h-16 mr-4"> Wi-Fi</div>`;
+      }
+      if (document.getElementById("kolam").checked) {
+        fasilitasHTML += `<div class="mt-2 flex items-center mr-4"><img src="img/kolam.jpeg" alt="Kolam Renang" class="rounded-lg w-16 h-16 mr-4"> Kolam Renang</div>`;
+      }
+      if (document.getElementById("gym").checked) {
+        fasilitasHTML += `<div class="mt-2 flex items-center mr-4"><img src="img/gym.jpg" alt="Gym" class="rounded-lg w-16 h-16 mr-4"> Gym</div>`;
+      }
+      if (document.getElementById("restoran").checked) {
+        fasilitasHTML += `<div class="mt-2 flex items-center mr-4"><img src="img/restoran.jpeg" alt="Restoran" class="rounded-lg w-16 h-16 mr-4"> Restoran</div>`;
+      }
+
+      gambar_fasilitas.innerHTML = fasilitasHTML;
+    }
+  </script>
+
+</body>
+</html>
